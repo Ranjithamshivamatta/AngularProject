@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Note } from '../core/model/note/note';
-import { NoteService } from '../core/service/note/note.service';
+
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { NoteService } from 'src/app/core/service/note/note.service';
+import { Note } from 'src/app/core/model/note/note';
 
 @Component({
   selector: 'app-pinned-note',

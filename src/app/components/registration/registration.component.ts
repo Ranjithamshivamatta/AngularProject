@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../core/service/user/user.service';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -22,6 +22,7 @@ export class RegistrationComponent implements OnInit {
       name: ['', Validators.required],
 // tslint:disable-next-line: max-line-length
       email: ['', Validators.required],
+// tslint:disable-next-line: max-line-length
       //  Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')],
       password: ['', Validators.required],
       //  Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9]{3,10}$')]],

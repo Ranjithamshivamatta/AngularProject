@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { validateConfig } from '@angular/router/src/config';
 import { MatIconRegistry } from '@angular/material';
-import { UserService } from '../core/service/user/user.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { UserService } from 'src/app/core/service/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      console.log('invalid')
+      console.log('invalid');
     }
     console.log(user);
     this.userService.login(user).subscribe(response => {

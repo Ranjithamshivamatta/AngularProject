@@ -1,14 +1,15 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { HomeComponent } from './home/home.component';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { ArchiveNotesComponent } from './archive-notes/archive-notes.component';
-import { TrashedNotesComponent } from './trashed-notes/trashed-notes.component';
-import { ViewNoteComponent } from './view-note/view-note.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ViewNoteComponent } from './components/view-note/view-note.component';
+import { ArchiveNotesComponent } from './components/archive-notes/archive-notes.component';
+import { TrashedNotesComponent } from './components/trashed-notes/trashed-notes.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+
 
 const appRoutes: Routes = [
 

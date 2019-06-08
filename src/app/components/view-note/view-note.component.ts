@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteService } from '../core/service/note/note.service';
-import { Note } from '../core/model/note/note';
+
 import { UpdateNoteComponent } from '../update-note/update-note.component';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NoteComponent } from '../note/note.component';
+import { NoteService } from 'src/app/core/service/note/note.service';
+import { Note } from 'src/app/core/model/note/note';
 
 @Component({
   selector: 'app-view-note',
@@ -21,7 +22,7 @@ export class ViewNoteComponent implements OnInit {
   }
 
   getNotes() {
-    console.log("token", this.mytoken);
+    console.log('token', this.mytoken);
     this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
       this.notes = newNote;
     }
@@ -35,7 +36,7 @@ export class ViewNoteComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.noteService.updateNote(note).subscribe(response => {
-        this.snackBar.open("Note updated successfully", "OK", {
+        this.snackBar.open('Note updated successfully', 'OK', {
           duration: 3000,
         });
       })
@@ -51,7 +52,7 @@ export class ViewNoteComponent implements OnInit {
       inTrash: true,
     }
     this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open("Sent to Trash ", "OK", {
+      this.snackBar.open('Sent to Trash ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
@@ -72,7 +73,7 @@ export class ViewNoteComponent implements OnInit {
       archive: true
     }
     this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open("Sent to Archive ", "OK", {
+      this.snackBar.open('Sent to Archive ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
@@ -88,10 +89,10 @@ export class ViewNoteComponent implements OnInit {
     var newNote = {
 
       ...note,
-      "pinned": true
+      'pinned': true
     }
     this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open("Pinned", "OK", {
+      this.snackBar.open('Pinned', 'OK', {
         duration: 3000,
       });
       this.getNotes();

@@ -13,7 +13,6 @@ export class UserService {
   constructor(private httpUtil: HttpService, private router: Router ) { }
 
   login(user) {
-    
     return this.httpUtil.postService(environment.base_url + 'login', user);
   }
 
@@ -29,3 +28,5 @@ export class UserService {
     return this.httpUtil.putService(environment.base_url + 'resetpassword/' + id, user, id);
   }
 }
+
+//@PutMapping(value = 'note')

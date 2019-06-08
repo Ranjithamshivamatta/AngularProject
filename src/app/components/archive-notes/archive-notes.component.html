@@ -1,6 +1,6 @@
-
-    <div class="move" *ngFor="let note of notes">
-      <mat-card   style="width: 570px;" *ngIf="note.inTrash" >
+ <div  fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center"></div>
+    <div class="move"  *ngFor="let note of notes">
+      <mat-card class="move"  style="width: 570px;" *ngIf="note.archive">
        
          
         <mat-card-header>
@@ -10,7 +10,7 @@
         </mat-card-header>
 
         <mat-card-content (click)=openDialog(note)>
-          {{note.description}}
+          {{note.discription}}
         </mat-card-content>
         <div>
           <button mat-icon-button matTooltip="Remind me">
@@ -25,28 +25,15 @@
           <button mat-icon-button matTooltip="Add image">
             <mat-icon>image</mat-icon>
           </button>
-          <button  mat-icon-button (click)=sendToArchive(note) matTooltip="Archive">
+          <button mat-icon-button (click)=unArchive(note) matTooltip="unarchive">
             <mat-icon>archive</mat-icon>
           </button>
-
           <button mat-icon-button [matMenuTriggerFor]="more" matTooltip="more">
             <mat-icon>more_vert</mat-icon>
           </button>
-
-          <button  mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button  mat-menu-item (click)=deleteNoteForever(note)>
-              Delete Forever
-            </button>
-            <button (click)=restore(note) mat-menu-item>
-            Restore
-            </button>
-            
-          
-          </mat-menu>
-         
+          <mat-menu #more="matMenu" class="morecard">
+            <button mat-button (click)=deleteNote(note)>Delete Note</button>
+  </mat-menu>
           <button mat-icon-button matTooltip="undo">
             <mat-icon>undo</mat-icon>
           </button>
@@ -58,5 +45,6 @@
      
       </mat-card>
    
-    </div>
+    </div> 
+
  
