@@ -1,8 +1,6 @@
 
     <div class="move" *ngFor="let note of notes">
-      <mat-card   style="width: 570px;" *ngIf="note.inTrash" >
-       
-         
+      <mat-card   style="width: 570px;" *ngIf="note.intrash" >
         <mat-card-header>
           <mat-card-title (click)=openDialog(note)>
             {{note.title}}

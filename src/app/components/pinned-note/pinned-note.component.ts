@@ -67,7 +67,7 @@ export class PinnedNoteComponent implements OnInit {
   {
      var newNote = {
        ...note,
-      inTrash: true,
+      intrash: true,
     }
     this.noteService.updateNote(newNote).subscribe(response => {
       this.snackBar.open("Sent to Trash ", "OK", {

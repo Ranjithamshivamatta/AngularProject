@@ -14,7 +14,7 @@
     
      
     <div class="move" *ngFor="let note of notes">
-      <mat-card style="background-color: wheat"  style="width: 570px;" *ngIf="!note.archive && !note.inTrash &&!note.pinned" >
+      <mat-card style="background-color: wheat"  style="width: 570px;" *ngIf="!note.archive && !note.intrash &&!note.pinned" >
        
       
         <mat-card-header>
@@ -54,6 +54,9 @@
           <mat-menu #more="matMenu" class="morecard">
             <button mat-button (click)=deleteNote(note)>Delete Note</button>
   </mat-menu>
+  <!-- <mat-menu #more="matMenu" class="morecard">
+    <button mat-button (click)=addLabel(note)>Add Label</button>
+</mat-menu> -->
           <button mat-icon-button matTooltip="undo">
             <mat-icon>undo</mat-icon>
           </button>

@@ -9,21 +9,18 @@ import { NoteService } from 'src/app/core/service/note/note.service';
   styleUrls: ['./trashed-notes.component.css']
 })
 export class TrashedNotesComponent implements OnInit {
- 
   public mytoken = '';
   public notes: Note[] = [];
 
 
   constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar ) { }
-  
-
   ngOnInit() {
 this.mytoken=localStorage.getItem('token');
     this.getNotes();
   }
 
   getNotes() {
-    console.log("token", this.mytoken);
+    console.log('token', this.mytoken);
     this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
       this.notes = newNote;
     }
@@ -37,7 +34,7 @@ this.mytoken=localStorage.getItem('token');
     });
     dialogRef.afterClosed().subscribe(result => {
       this.noteService.updateNote(note).subscribe(response => {
-        this.snackBar.open("Note updated successfully", "OK", {
+        this.snackBar.open('Note updated successfully', 'OK', {
           duration: 3000,
         });
       })
@@ -53,7 +50,7 @@ this.mytoken=localStorage.getItem('token');
       archive: true
     }
     this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open("Sent to Archive ", "OK", {
+      this.snackBar.open('Sent to Archive ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
@@ -68,9 +65,9 @@ this.mytoken=localStorage.getItem('token');
   deleteNoteForever(note) {
     console.log(note.noteId);
     this.noteService.deleteNote(note.noteId).subscribe(response => {
-      this.snackBar.open("deleted Note forever", "OK", { duration: 2000 });
+      this.snackBar.open('deleted Note forever', 'OK', { duration: 2000 });
     }), error => {
-      this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
+      this.snackBar.open('error', 'error to retrieve notes', { duration: 2000 });
     }
   }
 
@@ -79,12 +76,12 @@ this.mytoken=localStorage.getItem('token');
   {
     var newNote = {
       ...note,
-      inTrash: false,
+      intrash: false,
      
     }
     console.log(newNote);
     this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open(" Restored ", "OK", {
+      this.snackBar.open(' Restored ', 'OK', {
         duration: 3000,
       });
       this.getNotes();

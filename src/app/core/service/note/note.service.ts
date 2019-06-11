@@ -52,7 +52,7 @@ export class NoteService {
         token: token 
       })
     };
-    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'note/' + noteId + noteId, httpheaders);
+    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'note/' + noteId, httpheaders);
   }
 
   // deleteNote(noteId) {
@@ -65,7 +65,4 @@ export class NoteService {
   //   // };
   //   return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'delete/' + noteId, this.httpheaders);
   //  // }
-
-
-
 }
