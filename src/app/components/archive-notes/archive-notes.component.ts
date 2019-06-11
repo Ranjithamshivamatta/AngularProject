@@ -11,7 +11,7 @@ import { Note } from 'src/app/core/model/note/note';
 })
 export class ArchiveNotesComponent implements OnInit {
 
-  public mytoken = localStorage.getItem('token')
+  public mytoken = localStorage.getItem('token');
   public notes: Note[] = [];
 
   constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
@@ -22,11 +22,11 @@ export class ArchiveNotesComponent implements OnInit {
   }
 
   getNotes() {
-    console.log("token", this.mytoken);
+    console.log('token', this.mytoken);
     this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
       this.notes = newNote;
     }
-    )
+    );
   }
 
 
@@ -35,43 +35,44 @@ export class ArchiveNotesComponent implements OnInit {
       width: '550px',
       data: note
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.noteService.updateNote(note).subscribe(response => {
-        this.snackBar.open("Note updated successfully", "OK", {
+    dialogRef.afterClosed().subscribe(() => {
+      this.noteService.updateNote(note).subscribe(() => {
+        this.snackBar.open('Note updated successfully', 'OK', {
           duration: 3000,
         });
-      })
+      });
       console.log('The dialog was closed');
     });
   }
 
   deleteNote(note) {
     console.log(note.noteId);
-    this.noteService.deleteNote(note.noteId).subscribe(response => {
-      this.snackBar.open("deleted Note", "OK", { duration: 2000 });
-    }), error => {
-      this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
-    }
+    this.noteService.deleteNote(note.noteId).subscribe(() => {
+      this.snackBar.open('deleted Note', 'OK', { duration: 2000 });
+// tslint:disable-next-line: no-unused-expression
+    }), () => {
+      this.snackBar.open('error', 'error to retrieve notes', { duration: 2000 });
+    };
   }
 
-  unArchive(note)
-  {
-    var newNote = {
+  unArchive(note) {
+// tslint:disable-next-line: prefer-const
+    let newNote = {
       ...note,
-      "archive": false,
-      
-    }
+      isarchive: false,
+
+    };
     console.log(newNote);
-    this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open(" unArchive ", "OK", {
+    this.noteService.updateNote(newNote).subscribe(() => {
+      this.snackBar.open(' unArchive ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
     },
       (error) => {
         console.log('Error while unarchiving note::->', error);
-      })
+      });
   }
-  
+
 
 }

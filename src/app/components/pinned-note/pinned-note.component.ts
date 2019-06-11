@@ -15,88 +15,84 @@ export class PinnedNoteComponent implements OnInit {
   public notes: Note[] = [];
 
   constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar ) { }
-  
+
 
   ngOnInit() {
-    this.mytoken=localStorage.getItem('token');
+    this.mytoken = localStorage.getItem('token');
     this.getNotes();
   }
 
   getNotes() {
-    console.log("token", this.mytoken);
+    console.log('token', this.mytoken);
     this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
       this.notes = newNote;
     }
-    )
+    );
   }
   openDialog(note): void {
     const dialogRef = this.dialog.open(PinnedNoteComponent, {
       width: '550px',
       data: note
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.noteService.updateNote(note).subscribe(response => {
-        this.snackBar.open("Note updated successfully", "OK", {
+    dialogRef.afterClosed().subscribe(() => {
+      this.noteService.updateNote(note).subscribe(() => {
+        this.snackBar.open('Note updated successfully', 'OK', {
           duration: 3000,
         });
-      })
+      });
       console.log('The dialog was closed');
     });
   }
 
-  
   sendToArchive(note) {
-    var newNote = {
-    
+    const newNote = {
       ...note,
-      archive: true
-    }
-    this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open("Sent to Archive ", "OK", {
+      isarchive: true
+    };
+    this.noteService.updateNote(newNote).subscribe(() => {
+      this.snackBar.open('Sent to Archive ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
     },
       (error) => {
         console.log('Error while archiving note::->', error);
-      })
+      });
   }
-  
 
-  deleteNote(note)
-  {
-     var newNote = {
+
+  deleteNote(note) {
+     const newNote = {
        ...note,
       intrash: true,
-    }
-    this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open("Sent to Trash ", "OK", {
+    };
+     this.noteService.updateNote(newNote).subscribe(() => {
+      this.snackBar.open('Sent to Trash ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
     },
       (error) => {
         console.log('Error while deleting note::->', error);
-      })
+      });
   }
 
 
-  unPin(note)
-  {
-    var newNote = {
+  unPin(note) {
+    const newNote = {
       ...note,
-      pinned: false
-     
-    }
+      ispinned: false
+
+    };
     console.log(newNote);
-    this.noteService.updateNote(newNote).subscribe(response => {
-      this.snackBar.open(" Unpinned ", "OK", {
+    this.noteService.updateNote(newNote).subscribe(() => {
+      this.snackBar.open(' Unpinned ', 'OK', {
         duration: 3000,
       });
       this.getNotes();
     },
       (error) => {
         console.log('Error while unpinning note::->', error);
-      })
+      });
   }
 }

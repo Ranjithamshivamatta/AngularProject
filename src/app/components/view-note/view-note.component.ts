@@ -26,7 +26,7 @@ export class ViewNoteComponent implements OnInit {
     this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
       this.notes = newNote;
     }
-    )
+    );
   }
 
   openDialog(note): void {
@@ -39,7 +39,7 @@ export class ViewNoteComponent implements OnInit {
         this.snackBar.open('Note updated successfully', 'OK', {
           duration: 3000,
         });
-      })
+      });
       console.log('The dialog was closed');
     });
   }
@@ -50,7 +50,7 @@ export class ViewNoteComponent implements OnInit {
     const newNote = {
       ...note,
       intrash: true,
-    }
+    };
     this.noteService.updateNote(newNote).subscribe(response => {
       this.snackBar.open('Sent to Trash ', 'OK', {
         duration: 3000,
@@ -62,11 +62,11 @@ export class ViewNoteComponent implements OnInit {
       });
   }
 
-  addLabel(note){
+  addLabel(note) {
     const newNote = {
       ...note,
       intrash: true,
-    }
+    };
     this.noteService.updateNote(newNote).subscribe(response => {
       this.snackBar.open('Sent to Trash ', 'OK', {
         duration: 3000,
@@ -80,14 +80,14 @@ export class ViewNoteComponent implements OnInit {
 
 
 
-  
+
 
 
    sendToArchive(note) {
     const newNote = {
       ...note,
       isarchive: true
-    }
+    };
     this.noteService.updateNote(newNote).subscribe(response => {
       this.snackBar.open('Sent to Archive ', 'OK', {
         duration: 3000,
@@ -96,7 +96,7 @@ export class ViewNoteComponent implements OnInit {
     },
       (error) => {
         console.log('Error while archiving note::->', error);
-      })
+      });
   }
 
 
@@ -105,8 +105,8 @@ export class ViewNoteComponent implements OnInit {
     const newNote = {
 
       ...note,
-      'pinned': true
-    }
+      ispinned: true
+    };
     this.noteService.updateNote(newNote).subscribe(response => {
       this.snackBar.open('Pinned', 'OK', {
         duration: 3000,
@@ -115,9 +115,9 @@ export class ViewNoteComponent implements OnInit {
     },
     (error) => {
       console.log('Error while pinning note::->', error);
-    })
+    });
 
 }
 
-  
+
 }

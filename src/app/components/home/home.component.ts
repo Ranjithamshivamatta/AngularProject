@@ -22,17 +22,14 @@ export class HomeComponent implements OnInit {
     this.def = (this.abc);
   }
 
-  navigateNotes()
-  {
+  navigateNotes() {
     this.router.navigate(['home/viewnotes']);
   }
 
-  navigateArchive()
-  {
+  navigateArchive() {
     this.router.navigate(['home/archivenote']);
   }
-  navigateTrash()
-  {
+  navigateTrash() {
     this.router.navigate(['home/trashednote']);
   }
 }

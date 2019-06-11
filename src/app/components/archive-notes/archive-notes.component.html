@@ -1,6 +1,7 @@
- <div  fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center"></div>
+
+<div  fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center"></div>
     <div class="move"  *ngFor="let note of notes">
-      <mat-card class="move"  style="width: 570px;" *ngIf="note.archive">
+      <mat-card class="move"  style="width: 570px;" *ngIf="note.isarchive">
        
          
         <mat-card-header>

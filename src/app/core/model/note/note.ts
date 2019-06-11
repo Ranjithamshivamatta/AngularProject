@@ -1,5 +1,5 @@
-export interface Note{
-    "title":string;
-    "discription":string;
-    
+export interface Note {
+    'title': string;
+    'discription': string;
+
 }

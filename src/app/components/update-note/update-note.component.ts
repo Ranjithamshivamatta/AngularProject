@@ -11,20 +11,20 @@ import { NoteService } from 'src/app/core/service/note/note.service';
 export class UpdateNoteComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<UpdateNoteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, 
-    private noteService: NoteService,
-    private snackBar: MatSnackBar) { }
+              @Inject(MAT_DIALOG_DATA) public data,
+              private noteService: NoteService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
 
   closeClick(note) {
-    this.noteService.updateNote(note).subscribe(response =>{
-      this.snackBar.open("Note updated successfully", "OK", {
+    this.noteService.updateNote(note).subscribe(response => {
+      this.snackBar.open('Note updated successfully', 'OK', {
         duration: 3000,
       });
-    })
+    });
     this.dialogRef.close();
   }
 }

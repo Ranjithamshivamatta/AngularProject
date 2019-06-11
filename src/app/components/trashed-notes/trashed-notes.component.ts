@@ -15,8 +15,8 @@ export class TrashedNotesComponent implements OnInit {
 
   constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar ) { }
   ngOnInit() {
-this.mytoken=localStorage.getItem('token');
-    this.getNotes();
+this.mytoken = localStorage.getItem('token');
+this.getNotes();
   }
 
   getNotes() {
@@ -24,7 +24,7 @@ this.mytoken=localStorage.getItem('token');
     this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
       this.notes = newNote;
     }
-    )
+    );
   }
 
   openDialog(note): void {
@@ -32,24 +32,24 @@ this.mytoken=localStorage.getItem('token');
       width: '550px',
       data: note
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.noteService.updateNote(note).subscribe(response => {
+    dialogRef.afterClosed().subscribe(() => {
+      this.noteService.updateNote(note).subscribe(() => {
         this.snackBar.open('Note updated successfully', 'OK', {
           duration: 3000,
         });
-      })
+      });
       console.log('The dialog was closed');
     });
   }
 
 
   sendToArchive(note) {
-    var newNote = {
-    
+    const newNote = {
+
       ...note,
-      archive: true
-    }
-    this.noteService.updateNote(newNote).subscribe(response => {
+      isarchive: true
+    };
+    this.noteService.updateNote(newNote).subscribe(() => {
       this.snackBar.open('Sent to Archive ', 'OK', {
         duration: 3000,
       });
@@ -57,30 +57,30 @@ this.mytoken=localStorage.getItem('token');
     },
       (error) => {
         console.log('Error while archiving note::->', error);
-      })
+      });
   }
 
 
 
   deleteNoteForever(note) {
     console.log(note.noteId);
-    this.noteService.deleteNote(note.noteId).subscribe(response => {
+    this.noteService.deleteNote(note.noteId).subscribe(() => {
       this.snackBar.open('deleted Note forever', 'OK', { duration: 2000 });
-    }), error => {
+// tslint:disable-next-line: no-unused-expression
+    }), () => {
       this.snackBar.open('error', 'error to retrieve notes', { duration: 2000 });
-    }
+    };
   }
 
 
-  restore(note)
-  {
-    var newNote = {
+  restore(note) {
+    const newNote = {
       ...note,
       intrash: false,
-     
-    }
+
+    };
     console.log(newNote);
-    this.noteService.updateNote(newNote).subscribe(response => {
+    this.noteService.updateNote(newNote).subscribe(() => {
       this.snackBar.open(' Restored ', 'OK', {
         duration: 3000,
       });
@@ -88,6 +88,6 @@ this.mytoken=localStorage.getItem('token');
     },
       (error) => {
         console.log('Error while restoring note::->', error);
-      })
+      });
   }
   }
