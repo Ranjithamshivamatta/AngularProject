@@ -5,6 +5,7 @@ import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/
 import { NoteComponent } from '../note/note.component';
 import { NoteService } from 'src/app/core/service/note/note.service';
 import { Note } from 'src/app/core/model/note/note';
+import { KeepHelperService } from 'src/app/core/service/helper.service';
 
 @Component({
   selector: 'app-view-note',
@@ -14,19 +15,25 @@ import { Note } from 'src/app/core/model/note/note';
 export class ViewNoteComponent implements OnInit {
   public mytoken = '';
   public notes: Note[] = [];
-  constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar ) { }
+  constructor(private noteService: NoteService,
+              private helper: KeepHelperService,
+              private dialog: MatDialog, private snackBar: MatSnackBar) {
+    this.errorSubsriber = this.errorSubsriber.bind(this);
+  }
+
 
   ngOnInit() {
     this.mytoken = localStorage.getItem('token');
     this.getNotes();
+    this.helper.getLatestNotes().subscribe(() => {
+      this.getNotes();
+    });
   }
 
   getNotes() {
-    console.log('token', this.mytoken);
-    this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
+    this.noteService.retrieveNotes(this.mytoken).subscribe((newNote) => {
       this.notes = newNote;
-    }
-    );
+    }, this.errorSubsriber);
   }
 
   openDialog(note): void {
@@ -56,10 +63,7 @@ export class ViewNoteComponent implements OnInit {
         duration: 3000,
       });
       this.getNotes();
-    },
-      (error) => {
-        console.log('Error while deleting note::->', error);
-      });
+    }, this.errorSubsriber);
   }
 
   addLabel(note) {
@@ -72,10 +76,7 @@ export class ViewNoteComponent implements OnInit {
         duration: 3000,
       });
       this.getNotes();
-    },
-      (error) => {
-        console.log('Error while deleting note::->', error);
-      });
+    }, this.errorSubsriber);
   }
 
 
@@ -83,7 +84,7 @@ export class ViewNoteComponent implements OnInit {
 
 
 
-   sendToArchive(note) {
+  sendToArchive(note) {
     const newNote = {
       ...note,
       isarchive: true
@@ -93,15 +94,13 @@ export class ViewNoteComponent implements OnInit {
         duration: 3000,
       });
       this.getNotes();
-    },
-      (error) => {
-        console.log('Error while archiving note::->', error);
-      });
+    }, this.errorSubsriber);
   }
 
 
 
-   moveToPin(note) {
+  moveToPin(note) {
+    console.log(' i am at move to pin');
     const newNote = {
 
       ...note,
@@ -112,12 +111,11 @@ export class ViewNoteComponent implements OnInit {
         duration: 3000,
       });
       this.getNotes();
-    },
-    (error) => {
-      console.log('Error while pinning note::->', error);
-    });
+    }, this.errorSubsriber);
 
-}
+  }
 
-
+  private errorSubsriber(error) {
+    console.error('Error While getting Data::', error);
+  }
 }

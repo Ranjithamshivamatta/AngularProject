@@ -12,57 +12,34 @@ import { environment } from 'src/environments/environment';
 export class NoteService {
 
   constructor(private httpUtil: HttpService, private router: Router, public snackBar: MatSnackBar) { }
-
+getHeader(contentType = 'application/json') {
+  const token = localStorage.getItem('token');
+  return  {
+    headers: new HttpHeaders({
+      'Content-Type': contentType,
+      token
+    })
+  };
+}
   retrieveNotes(token): Observable<any> {
-    const httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        token
-      })
-    };
-    return this.httpUtil.getService(environment.note_url + 'notes/' + token, httpheaders);
+    const httpheaders = this.getHeader('application/x-www-form-urlencoded');
+    return this.httpUtil.getService(environment.note_url + 'getNotes/' + token, httpheaders);
   }
 
   createNote(note): Observable<any> {
-    const token = localStorage.getItem('token');
-    const httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        token: token
-      })
-    };
-    return this.httpUtil.postServiceForNoteCreate(environment.note_url + 'note/' + token, httpheaders, note);
+   const token = localStorage.getItem('token');
+   const httpheaders = this.getHeader();
+   return this.httpUtil.postServiceForNoteCreate(environment.note_url + 'createNote/' + token, httpheaders, note);
     }
   updateNote(note) {
     const token = localStorage.getItem('token');
-    const httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        token: token
-      })
-    };
-    return this.httpUtil.putServiceForNoteUpdate(environment.note_url + 'note/' + token, note, httpheaders);
+    const httpheaders =  this.getHeader();
+    return this.httpUtil.putServiceForNoteUpdate(environment.note_url + 'updateNote/' + token, note, httpheaders);
   }
 
   deleteNote(noteId) {
     const token = localStorage.getItem('token');
-    const httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        token: token 
-      })
-    };
-    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'note/' + noteId, httpheaders);
+    const httpheaders = this.getHeader();
+    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'deleteNote/' + noteId, httpheaders);
   }
-
-  // deleteNote(noteId) {
-  //   // const token = localStorage.getItem('token');
-  //   // const httpheaders = {
-  //   //   headers: new HttpHeaders({
-  //   //     'Content-Type': 'application/json',
-  //   //   token
-  //   //   })
-  //   // };
-  //   return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'delete/' + noteId, this.httpheaders);
-  //  // }
 }

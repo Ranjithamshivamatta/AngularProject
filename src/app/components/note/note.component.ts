@@ -6,6 +6,7 @@ import { MatSnackBar, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/
 import { Note } from 'src/app/core/model/note/note';
 import { HttpService } from 'src/app/core/service/http/http.service';
 import { NoteService } from 'src/app/core/service/note/note.service';
+import { KeepHelperService } from 'src/app/core/service/helper.service';
 
 
 @Component({
@@ -55,7 +56,8 @@ export class NoteComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
               private router: Router, private noteService: NoteService,
-              private httpUtil: HttpService, private snackBar: MatSnackBar) { }
+              private httpUtil: HttpService, private snackBar: MatSnackBar,
+              private helper: KeepHelperService) { }
 
   ngOnInit() {
     this.getNotes();
@@ -70,7 +72,7 @@ export class NoteComponent implements OnInit {
 
   getNotes() {
     console.log('token', this.mytoken);
-    this.noteService.retrieveNotes(this.mytoken).subscribe(newNote => {
+    this.noteService.retrieveNotes(this.mytoken).subscribe((newNote) => {
       this.notes = newNote;
     }
     );
@@ -92,7 +94,7 @@ export class NoteComponent implements OnInit {
       this.snackBar.open('success', 'note created', {
         duration: 2000
       });
-      this.getNotes();
+      this.helper.refreshNote();
     },
       (error) => {
         console.log('Error while creating note::->', error);
