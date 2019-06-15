@@ -116,6 +116,6 @@ export class ViewNoteComponent implements OnInit {
   }
 
   private errorSubsriber(error) {
-    console.error('Error While getting Data::', error);
+    console.error('Error While getting Data:', error);
   }
 }

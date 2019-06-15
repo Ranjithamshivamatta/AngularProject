@@ -42,4 +42,17 @@ getHeader(contentType = 'application/json') {
     const httpheaders = this.getHeader();
     return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'deleteNote/' + noteId, httpheaders);
   }
+
+  public doCollab(collabUser) {
+// tslint:disable-next-line: prefer-const
+    let token = localStorage.getItem('token');
+    return this.httpUtil.putService(environment.note_url + '/add-collabarator/' + token, collabUser, {});
+  }
+
+  public removeCollab(collabUser) {
+    const token = localStorage.getItem('token');
+    return this.httpUtil.putService(environment.note_url + '/remove-collabarator/' + token, collabUser, {});
+}
+
+
 }
