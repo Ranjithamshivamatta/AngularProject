@@ -30,21 +30,16 @@ import { LoginComponent } from './components/login/login.component';
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-
     ForgotpasswordComponent,
     ResetpasswordComponent,
-
     UpdateNoteComponent,
     ArchiveNotesComponent,
     TrashedNotesComponent,
     PinnedNoteComponent,
     SideNavComponent,
     ViewNoteComponent,
-
     NoteComponent,
-
     MoreButtonDirective,
-
     LabelComponent,
 
   ],
@@ -55,11 +50,6 @@ import { LoginComponent } from './components/login/login.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatExpansionModule
-
-
-
-
-
   ],
   entryComponents: [UpdateNoteComponent, PinnedNoteComponent],
 

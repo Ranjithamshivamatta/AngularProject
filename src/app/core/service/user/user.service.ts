@@ -41,21 +41,21 @@ export class UserService {
     const token = localStorage.getItem('token');
     return this.httpUtil.getService(environment.base_url + '/get-user/' + token, {});
   }
-  public getCollUser() {
-    const token = localStorage.getItem('token');
-    return this.httpUtil.getService(environment.base_url + '/get-all-user/' + token, {});
-  }
-  public getCollUserId(emailId) {
-    const header = this.getHeader();
-    return this.httpUtil.getService(environment.base_url + '/get-coll-user/' + emailId, header);
-}
-public getNoteOwner(ownerId) {
-  const token = localStorage.getItem('token');
-  return this.httpUtil.getService(environment.base_url + '/get-user-email/' + token, {
-    params: {
-      coUserId: ownerId
-    }
-  });
-}
+//   public getCollUser() {
+//     const token = localStorage.getItem('token');
+//     return this.httpUtil.getService(environment.base_url + '/get-all-user/' + token, {});
+//   }
+//   public getCollUserId(emailId) {
+//     const header = this.getHeader();
+//     return this.httpUtil.getService(environment.base_url + '/get-coll-user/' + emailId, header);
+// }
+// public getNoteOwner(ownerId) {
+//   const token = localStorage.getItem('token');
+//   return this.httpUtil.getService(environment.base_url + '/get-user-email/' + token, {
+//     params: {
+//       coUserId: ownerId
+//     }
+  // });
+// }
 }
 

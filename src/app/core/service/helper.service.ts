@@ -11,6 +11,10 @@ export class KeepHelperService {
     public refreshNote() {
         this.subject.next();
     }
+
+    public refreshPinnedNote() {
+        this.subject.next();
+    }
     public getLatestNotes(): Observable<any> {
         return this.subject.asObservable();
     }

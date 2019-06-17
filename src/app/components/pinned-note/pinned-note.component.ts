@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/core/service/note/note.service';
 import { Note } from 'src/app/core/model/note/note';
+import { KeepHelperService } from 'src/app/core/service/helper.service';
 
 @Component({
   selector: 'app-pinned-note',
@@ -14,7 +15,8 @@ export class PinnedNoteComponent implements OnInit {
   public mytoken = '';
   public notes: Note[] = [];
 
-  constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar ) { }
+  constructor(private noteService: NoteService, private dialog: MatDialog, private snackBar: MatSnackBar,
+              private helper: KeepHelperService ) { }
 
 
   ngOnInit() {

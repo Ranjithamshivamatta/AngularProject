@@ -8,14 +8,13 @@ import { HttpService } from 'src/app/core/service/http/http.service';
 import { NoteService } from 'src/app/core/service/note/note.service';
 import { KeepHelperService } from 'src/app/core/service/helper.service';
 
-
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  public cardData: any ;
+  public cardData: any;
   public buttons = [{
     name: 'notifications',
     tooltip: 'notifications'
@@ -67,7 +66,6 @@ export class NoteComponent implements OnInit {
     });
   }
 
-
   get f() { return this.createNoteForm.controls; }
 
   getNotes() {
@@ -103,4 +101,4 @@ export class NoteComponent implements OnInit {
 
 
 
-  }
+}
